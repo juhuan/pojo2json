@@ -3,15 +3,19 @@ plugins {
 }
 
 repositories {
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/spring/'}
+    maven { url 'https://maven.aliyun.com/repository/google/' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter/'}
     mavenCentral()
 }
 
 group 'ink.organics'
-version '1.0.7'
+version '1.0.7.20200831'
 
 intellij {
     plugins 'java'
-    version '2019.2'
+    version '2020.2'
     updateSinceUntilBuild false
 }
 
@@ -19,8 +23,10 @@ patchPluginXml {
     sinceBuild "181"
 }
 
-publishPlugin {
-    token intellijPublishToken
-    username intellijPublishUsername
-    password intellijPublishPassword
-}
+//publishPlugin {
+//    token intellijPublishToken
+//    username intellijPublishUsername
+//    password intellijPublishPassword
+//}
+
+
