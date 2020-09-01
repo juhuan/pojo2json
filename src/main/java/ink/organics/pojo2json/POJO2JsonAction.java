@@ -67,17 +67,6 @@ public class POJO2JsonAction extends AnAction {
         normalTypes.put("LocalTime", now.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 
-    /**
-     * The constant SKIP_FIELD_NAMES.
-     */
-    private static final List<String> SKIP_FIELD_NAMES = new ArrayList<String>() {{
-        add("serialVersionUID");
-    }};
-    /**
-     * The constant SKIP_FIELD_TYPES.
-     */
-    private static final List<String> SKIP_FIELD_TYPES = new ArrayList<String>() {{
-    }};
 
     /**
      * Action performed.
@@ -126,17 +115,11 @@ public class POJO2JsonAction extends AnAction {
 
         for (PsiField field : psiClass.getAllFields()) {
 
-            String name = field.getName();
-            PsiType type = field.getType();
-
-            if (SKIP_FIELD_NAMES.contains(name)) {
+            if (SkipHandler.skipField(field)) {
                 continue;
             }
-            if (SKIP_FIELD_TYPES.contains(type.toString())) {
-                continue;
-            }
+            map.put(field.getName(), typeResolve(field.getType(), 0));
 
-            map.put(name, typeResolve(type, 0));
         }
 
         return map;
@@ -153,7 +136,7 @@ public class POJO2JsonAction extends AnAction {
 
         level = ++level;
         if (type instanceof PsiPrimitiveType) {
-            //array type
+            //primitive type
 
             return getDefaultValue(type);
 
@@ -217,15 +200,10 @@ public class POJO2JsonAction extends AnAction {
                         }
 
                         for (PsiField field : psiClass.getAllFields()) {
-                            String name = field.getName();
-                            PsiType type1 = field.getType();
-                            if (SKIP_FIELD_NAMES.contains(name)) {
+                            if (SkipHandler.skipField(field)) {
                                 continue;
                             }
-                            if (SKIP_FIELD_TYPES.contains(type1.toString())) {
-                                continue;
-                            }
-                            map.put(name, typeResolve(type1, level));
+                            map.put(field.getName(), typeResolve(field.getType(), level));
                         }
 
                         return map;
