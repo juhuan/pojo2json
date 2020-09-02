@@ -53,4 +53,8 @@
             <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta alt 0"/>
         </action>
     </actions>
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceInterface="ink.organics.learning.TestProjectService"
+                                     serviceImplementation="ink.organics.learning.impl.TestProjectServiceImpl"/>
+    </extensions>
 </idea-plugin>
