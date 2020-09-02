@@ -41,5 +41,16 @@
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
 
         </action>
+
+        <!-- 添加到主菜单，名字："Sample Menu" -->
+        <group id="MyPlugin.SampleMenu" text="Sample Menu" description="Sample menu">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action id="Myplugin.Textboxes" class="ink.organics.learning.TextBoxes" text="Text Boxes"
+                    description="A test menu item"/>
+        </group>
+        <action id="pluginName.Id001" class="ink.organics.learning.TestQuickCreate" text="测试快速创建" description="哟西">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta alt 0"/>
+        </action>
     </actions>
 </idea-plugin>

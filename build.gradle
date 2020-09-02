@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'ink.organics'
-version '1.0.7.20200831'
+version '1.0.7.20200901B'
 sourceCompatibility = 1.8
 
 repositories {
